@@ -14,7 +14,7 @@ scale_4k = 'scale=-1:2160'
 scale_hd = '1920:1080'
 
 
-def jpgs_list()
+def jpgs_list():
     '''List the jpegs in directory to a file, formatted
     for ffmpeg to export.'''
 
