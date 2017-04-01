@@ -9,7 +9,7 @@ import pudb
 
 py3 = version_info[0] > 2 #creates boolean value for test that Python major version > 2
 direc = os.getcwd()
-fps = str(420)
+fps = str(24)
 scale_4k = 'scale=-1:2160'
 scale_hd = '1920:1080'
 
@@ -85,7 +85,7 @@ def run():
 
     fps
     scale_hd
-    command = 'mencoder -nosound -ovc lavc -lavcopts vcodec=mpeg4:vbitrate=21600000 -o rendered.avi -mf type=jpeg:fps=%s mf://@files.txt -vf scale=%s' % (fps, scale)
+    command = 'mencoder -nosound -ovc lavc -lavcopts vcodec=mpeg4:vbitrate=21600000 -o rendered.avi -mf type=jpeg:fps=%s mf://@files.txt -vf scale=%s' % (fps, scale_hd)
 
     call(command, shell=True)
 
