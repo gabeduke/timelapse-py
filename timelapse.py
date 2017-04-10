@@ -10,7 +10,6 @@ import pudb
 
 py3 = version_info[0] > 2  # creates boolean value for test that Python major version > 2
 direc = os.getcwd()
-my_title = ""
 fps = '24'
 scale_4k = 'scale=-1:2160'
 scale_hd = '1920:1080'
