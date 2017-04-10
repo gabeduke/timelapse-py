@@ -17,8 +17,9 @@ scale_hd = '1920:1080'
 
 
 def jpgs_list():
-    '''List the jpegs in directory to a file, formatted
-    for ffmpeg to export.'''
+    """List the jpegs in directory to a file, formatted
+    for ffmpeg to export.
+    """
 
     jpeg_files = list()
 
@@ -37,8 +38,9 @@ def jpgs_list():
 
 
 def raws_list():
-    '''List the RAW files in directory to a file, formatted
-    for ffmpeg to export.'''
+    """List the RAW files in directory to a file, formatted
+    for ffmpeg to export.
+    """
 
     raw_files = list()
 
@@ -85,7 +87,6 @@ def set_fps():
 
 
 def run(title):
-    pudb.set_trace()
     """Compile the timelapse."""
 
     fps  # initialize from global context
