@@ -5,11 +5,13 @@ from sys import version_info
 from cursesmenu import *
 from cursesmenu.items import *
 from subprocess import call
+import easyargs
 import pudb
 
-py3 = version_info[0] > 2 #creates boolean value for test that Python major version > 2
+py3 = version_info[0] > 2  # creates boolean value for test that Python major version > 2
 direc = os.getcwd()
-fps = str(24)
+my_title = ""
+fps = '24'
 scale_4k = 'scale=-1:2160'
 scale_hd = '1920:1080'
 
@@ -54,14 +56,16 @@ def raws_list():
         myfile.write('\n'.join(raw_files))
 
 
-def menu():
-    """Menu object for running the timelapse"""
+@easyargs
+def menu(title="rendered.avi"):
+    """Menu object for running the timelapse
+    """
 
     # create the menu object
     this_menu = CursesMenu("Timelapse Helper", "Menu")
 
     # create the menu items
-    default = FunctionItem("Compile Timelapse", run)
+    default = FunctionItem("Compile Timelapse", run, args=[title])
     framerate = FunctionItem("Set framerate", set_fps)
 
     # build the menu
@@ -80,12 +84,17 @@ def set_fps():
         fps = raw_input("Enter new framerate: ")
 
 
-def run():
+def run(title):
+    pudb.set_trace()
     """Compile the timelapse."""
 
-    fps
-    scale_hd
-    command = 'mencoder -nosound -ovc lavc -lavcopts vcodec=mpeg4:vbitrate=21600000 -o rendered.avi -mf type=jpeg:fps=%s mf://@files.txt -vf scale=%s' % (fps, scale_hd)
+    fps  # initialize from global context
+    scale = scale_hd
+
+    # build shell command
+    base_args = '-nosound -ovc lavc -lavcopts vcodec=mpeg4:vbitrate=21600000'
+    files = '-mf type=jpeg:fps={} mf://@files.txt'.format(fps)
+    command = 'mencoder {0} -o {title} {1} -vf scale={2}'.format(base_args, files, scale, title=title)
 
     call(command, shell=True)
 
